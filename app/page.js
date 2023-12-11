@@ -1,8 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
+
 const getEmoji = require("get-random-emoji");
 
 export default function Home() {
+  const Blink = ({ children, delay }) => {
+    return (
+      <>
+        <style>
+          {`
+  .blink${delay} {
+    animation: blink-animation 1s steps(${delay}, start) infinite;
+    -webkit-animation: blink-animation 1s steps(${delay}, start) infinite;
+  }
+  @keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  `}
+        </style>
+        <span class={`blink${delay}`}>{children}</span>
+      </>
+    );
+  };
   const powerballStyle = {
     backgroundColor: "#fff",
     width: 30,
@@ -112,25 +138,26 @@ export default function Home() {
           />
         ))}
         {Array.apply(null, { length: 1440 }).map((_, index) => (
-          <div
-            key={index}
-            style={{
-              position: "absolute",
-              top: 2200,
-              left: 500,
-              height: 50,
-              width: 50,
-              transform: `rotate(${
-                Math.floor(Math.random() * (400 - 1 + 1)) + index
-              }deg) translate(${index * 0.25}px, ${index * 0.7}px)`,
-              backgroundColor: `#${((Math.random() * 0xffffffff) << 0)
-                .toString(16)
-                .padStart(6, "0")}`,
-              borderRadius: index % 2 === 0 ? 25 : 0,
-            }}
-          >
-            {getEmoji()}
-          </div>
+          <Blink key={index} delay={Math.floor(Math.random() * (9 - 1) + 1)}>
+            <div
+              style={{
+                position: "absolute",
+                top: 2200,
+                left: 500,
+                height: 50,
+                width: 50,
+                transform: `rotate(${
+                  Math.floor(Math.random() * (400 - 1 + 1)) + index
+                }deg) translate(${index * 0.25}px, ${index * 0.7}px)`,
+                backgroundColor: `#${((Math.random() * 0xffffffff) << 0)
+                  .toString(16)
+                  .padStart(6, "0")}`,
+                borderRadius: index % 2 === 0 ? 25 : 0,
+              }}
+            >
+              {getEmoji()}
+            </div>
+          </Blink>
         ))}
         <div
           className="fixed left-0 top-11 text-green-400 pl-10"
