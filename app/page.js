@@ -5,11 +5,18 @@ const getEmoji = require("get-random-emoji");
 
 export default function Home() {
   const getBall = () => {
-    return Math.floor(Math.random() * (69 - 1 + 1)) + 1;
-  }
+    // forcing values to not be statically rendered
+    let date = Date.now();
+    if (date > 1) {
+      return Math.floor(Math.random() * (69 - 1 + 1)) + 1;
+    }
+  };
   const getPowerBall = () => {
-    return Math.floor(Math.random() * (26 - 1 + 1)) + 1;
-  }
+    let date = Date.now();
+    if (date > 1) {
+      return Math.floor(Math.random() * (26 - 1 + 1)) + 1;
+    }
+  };
   const Blink = ({ children, delay }) => {
     return (
       <>
@@ -209,21 +216,11 @@ export default function Home() {
               justifyContent: "center",
             }}
           >
-            <div style={powerballStyle}>
-            {getBall()}
-            </div>
-            <div style={powerballStyle}>
-            {getBall()}
-            </div>
-            <div style={powerballStyle}>
-            {getBall()}
-            </div>
-            <div style={powerballStyle}>
-            {getBall()}
-            </div>
-            <div style={powerballStyle}>
-              {getBall()}
-            </div>
+            <div style={powerballStyle}>{getBall()}</div>
+            <div style={powerballStyle}>{getBall()}</div>
+            <div style={powerballStyle}>{getBall()}</div>
+            <div style={powerballStyle}>{getBall()}</div>
+            <div style={powerballStyle}>{getBall()}</div>
             <div
               style={{
                 backgroundColor: "#f00",
