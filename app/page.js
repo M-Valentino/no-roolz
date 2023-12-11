@@ -4,6 +4,12 @@ import Link from "next/link";
 const getEmoji = require("get-random-emoji");
 
 export default function Home() {
+  const getBall = () => {
+    return Math.floor(Math.random() * (69 - 1 + 1)) + 1;
+  }
+  const getPowerBall = () => {
+    return Math.floor(Math.random() * (26 - 1 + 1)) + 1;
+  }
   const Blink = ({ children, delay }) => {
     return (
       <>
@@ -204,19 +210,19 @@ export default function Home() {
             }}
           >
             <div style={powerballStyle}>
-              {Math.floor(Math.random() * (69 - 1 + 1)) + 1}
+            {getBall()}
             </div>
             <div style={powerballStyle}>
-              {Math.floor(Math.random() * (69 - 1 + 1)) + 1}
+            {getBall()}
             </div>
             <div style={powerballStyle}>
-              {Math.floor(Math.random() * (69 - 1 + 1)) + 1}
+            {getBall()}
             </div>
             <div style={powerballStyle}>
-              {Math.floor(Math.random() * (69 - 1 + 1)) + 1}
+            {getBall()}
             </div>
             <div style={powerballStyle}>
-              {Math.floor(Math.random() * (69 - 1 + 1)) + 1}
+              {getBall()}
             </div>
             <div
               style={{
@@ -229,7 +235,7 @@ export default function Home() {
                 paddingTop: 5,
               }}
             >
-              {Math.floor(Math.random() * (26 - 1 + 1)) + 1}
+              {getPowerBall()}
             </div>
           </div>
           <Image
